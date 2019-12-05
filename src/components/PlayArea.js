@@ -4,7 +4,6 @@ import Tile from './Tile';
 function PlayArea(props)
 {
   let gameBoard = props.gameBoard;
-  let clickedBoard = props.clickedBoard;
   function makeRow(rowArray, rowIndex){
     var rowStyle = {
       padding: '0px',
