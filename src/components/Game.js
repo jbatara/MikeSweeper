@@ -117,7 +117,7 @@ class Game extends React.Component {
         return (
             <div>
                 <Header />
-                <PlayArea gameBoard={this.state.gameBoard} onClick={this.props.handleClick} />
+                <PlayArea gameBoard={this.state.gameBoard} onClick={this.props.handleLeftClick(event)} onContextMenu={this.props.handleRightClick(event)} />
             </div>
         )
     }
@@ -125,6 +125,9 @@ class Game extends React.Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        handleLeftClick: () => dispatch({type: 'ON_CLICK'})
+        handleLeftClick: (event) => dispatch({type: 'LEFT_CLICK', gameBoard:this.state.gameBoard, row:event.target.key.split('-')[0].parseInt(), column: event.target.key.split('-')[1].parseInt()}),
+        handleRightClick: (event) => dispatch({type: 'RIGHT_CLICK', gameBoard:this.state.gameBoard,row:event.target.key.split('-')[0].parseInt(), column: event.target.key.split('-')[1].parseInt()})
     }
 }
+
+export default connect(null, mapDispatchToProps)(Game);
